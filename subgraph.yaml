@@ -1,0 +1,27 @@
+specVersion: 0.0.2
+description: Truthpipes for Ethereum
+repository: https://github.com/panamantis/tp_subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Truthpipes
+    network: mainnet
+    source:
+      address: '0x5EC9E4c318b72d72F70355c04Fc889a84a22A884'
+      abi: Gravity
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.3
+      language: wasm/assemblyscript
+      entities:
+        - Gravatar
+      abis:
+        - name: Gravity
+          file: ./abis/Gravity.json
+      eventHandlers:
+        - event: NewPolicy(uint256,address,string,string,string)
+          handler: handleNewPolicy
+        - event: UpdatedPolicy(uint256,address,string,string,string)
+          handler: handleUpdatedPolicy
+      file: ./src/mapping.ts

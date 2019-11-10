@@ -1,0 +1,7 @@
+type Policy @entity {
+  id: ID!
+  owner: Bytes!
+  displayName: String!
+  imageUrl: String!
+  wiki: String!
+}
